@@ -47,3 +47,14 @@ class TestErrors(unittest.TestCase):
         self.assertEqual(
             validation_response.details["explanation"], "No explanation available"
         )
+
+    @patch("lifeguard_openai.actions.errors.openai")
+    def test_explain_error_from_traceback_list(self, mock_openai):
+        mock_openai.Completion.create.return_value.choices = []
+
+        validation_response = ValidationResponse(PROBLEM, {"traceback": ["traceback"]})
+
+        explain_error(validation_response, {})
+        self.assertEqual(
+            validation_response.details["explanation"], ["No explanation available"]
+        )
