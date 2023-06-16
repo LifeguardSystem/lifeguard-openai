@@ -1,32 +1,17 @@
-import openai
-
 from lifeguard_openai.settings import (
-    LIFEGUARD_OPENAI_TOKEN,
-    LIFEGUARD_OPENAI_MODEL,
-    LIFEGUARD_OPENAI_TEMPERATURE,
-    LIFEGUARD_OPENAI_TOP_P,
-    LIFEGUARD_OPENAI_FREQUENCY_PENALTY,
-    LIFEGUARD_OPENAI_PRESENCE_PENALTY,
-    LIFEGUARD_OPENAI_MAX_TOKENS,
     LIFEGUARD_OPENAI_EXPLAIN_ERROR_PROMPT,
 )
 
-openai.api_key = LIFEGUARD_OPENAI_TOKEN
+from lifeguard_openai.infrastructure.prompt import execute_prompt
 
 
 def _get_explanation(traceback):
     if traceback:
-        response = openai.Completion.create(
-            model=LIFEGUARD_OPENAI_MODEL,
-            prompt=f"{LIFEGUARD_OPENAI_EXPLAIN_ERROR_PROMPT}\n\n{traceback}",
-            temperature=LIFEGUARD_OPENAI_TEMPERATURE,
-            top_p=LIFEGUARD_OPENAI_TOP_P,
-            frequency_penalty=LIFEGUARD_OPENAI_FREQUENCY_PENALTY,
-            presence_penalty=LIFEGUARD_OPENAI_PRESENCE_PENALTY,
-            max_tokens=LIFEGUARD_OPENAI_MAX_TOKENS,
+        response = execute_prompt(
+            f"{LIFEGUARD_OPENAI_EXPLAIN_ERROR_PROMPT}\n\n{traceback}"
         )
-        if response.choices:
-            return response.choices[0].text
+        if response:
+            return response
         else:
             return "No explanation available"
     return "No traceback available"
