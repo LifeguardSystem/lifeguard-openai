@@ -5,6 +5,18 @@ from lifeguard.settings import SettingsManager
 
 SETTINGS_MANAGER = SettingsManager(
     {
+        "LIFEGUARD_OPENAI_API_TYPE": {
+            "default": "openai",
+            "description": "OpenAI API type (azure or openai)",
+        },
+        "LIFEGUARD_OPENAI_API_BASE": {
+            "default": "",
+            "description": "OpenAI API base",
+        },
+        "LIFEGUARD_OPENAI_API_VERSION": {
+            "default": "",
+            "description": "OpenAI API Version",
+        },
         "LIFEGUARD_OPENAI_TOKEN": {
             "default": "",
             "description": "OpenAI token",
@@ -45,6 +57,11 @@ SETTINGS_MANAGER = SettingsManager(
     }
 )
 
+LIFEGUARD_OPENAI_API_TYPE = SETTINGS_MANAGER.read_value("LIFEGUARD_OPENAI_API_TYPE")
+LIFEGUARD_OPENAI_API_BASE = SETTINGS_MANAGER.read_value("LIFEGUARD_OPENAI_API_BASE")
+LIFEGUARD_OPENAI_API_VERSION = SETTINGS_MANAGER.read_value(
+    "LIFEGUARD_OPENAI_API_VERSION"
+)
 LIFEGUARD_OPENAI_TOKEN = SETTINGS_MANAGER.read_value("LIFEGUARD_OPENAI_TOKEN")
 LIFEGUARD_OPENAI_TEMPERATURE = SETTINGS_MANAGER.read_value(
     "LIFEGUARD_OPENAI_TEMPERATURE"
