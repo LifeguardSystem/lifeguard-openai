@@ -6,7 +6,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="lifeguard-openai",
-    version="1.0.4",
+    version="1.0.5",
     url="https://github.com/LifeguardSystem/lifeguard-openai",
     author="Diego Rubin",
     author_email="contact@diegorubin.dev",

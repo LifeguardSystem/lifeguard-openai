@@ -53,3 +53,14 @@ class TestErrors(unittest.TestCase):
         self.assertEqual(
             validation_response.details["explanation"], ["No explanation available"]
         )
+
+    @patch("lifeguard_openai.actions.errors.execute_prompt")
+    def test_expection_on_execute_prompt(self, mock_execute_prompt):
+        mock_execute_prompt.side_effect = Exception("error")
+
+        validation_response = ValidationResponse(PROBLEM, {"traceback": ["traceback"]})
+
+        explain_error(validation_response, {})
+        self.assertEqual(
+            validation_response.details["explanation"], ["Error on explain error"]
+        )
