@@ -42,9 +42,9 @@ def execute_prompt(prompt, options=None):
     if not options:
         options = {}
     options["messages"] = [
-        {"role": "User", "content": prompt},
+        {"role": "user", "content": prompt},
     ]
-    options["stop"] = [" User:", " Assistant:"]
+    options["stop"] = ["user:", "assistant:"]
 
     default_options.update(options)
 

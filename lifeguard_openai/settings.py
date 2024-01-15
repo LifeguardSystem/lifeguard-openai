@@ -27,7 +27,7 @@ SETTINGS_MANAGER = SettingsManager(
             "description": "OpenAI temperature parameter",
         },
         "LIFEGUARD_OPENAI_MODEL": {
-            "default": "text-davinci-003",
+            "default": "gpt-35-turbo",
             "description": "OpenAI model parameter",
         },
         "LIFEGUARD_OPENAI_TOP_P": {

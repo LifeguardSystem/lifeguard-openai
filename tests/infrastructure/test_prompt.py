@@ -15,9 +15,9 @@ class TestErrors(unittest.TestCase):
             frequency_penalty=0.0,
             presence_penalty=0.0,
             max_tokens=200,
-            model="text-davinci-003",
-            messages=[{"role": "User", "content": "prompt"}],
-            stop=[" User:", " Assistant:"],
+            model="gpt-35-turbo",
+            messages=[{"role": "user", "content": "prompt"}],
+            stop=["user:", "assistant:"],
         )
         self.assertEqual(
             response,
